@@ -1,6 +1,4 @@
-#include <iostream>
-#include <vector>
-#include <string>
+#include <bits/stdc++.h> 
 using namespace std;
 
 class   Int_and_Char{
@@ -38,7 +36,20 @@ int main(int argc, char **argv)
             v.push_back(obj);
             }
         }
+        
+        
+        for(int x=0; x < v.size() ; x++)
+        {
+            for(int y=0;    y < v.size();     y++)
+            {
+                if(x != y && v[x] -> count > v[y] -> count)
+                    swap(v[x],v[y]);
+            }
+        }
 
+
+                for(int x=0; x < v.size() ; x++)
+            cout<<v[x]->character<<" "<<v[x]->count<<endl; 
             
 
     return 0;
