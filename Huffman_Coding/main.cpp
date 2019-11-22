@@ -1,9 +1,11 @@
 #include <iostream>
 #include <vector>
+#include <string>
 using namespace std;
 
 class   Int_and_Char{
     
+public:
     Int_and_Char()
     {count=0;}
     
@@ -17,19 +19,28 @@ class   Int_and_Char{
 
 int main(int argc, char **argv)
 {
-    vector<Int_and_Char>v;
+    vector<Int_and_Char*>v;
     string data;
     cout<<"Enter data\n";
     cin>>data;
-    int size = data.size();     int count=0;
-    for(int x=0;    x<size;     x++)
-        {
-            for(int y=0;    y<size;     y++)
+    for(int x=0;    x < data.size();     x++)
+        {  
+            if(data[x] != ' '){
+            Int_and_Char *obj = new Int_and_Char(1, data[x]);
+            for(int y=0;    y < data.size();     y++)
             {
-                if(x!=y && data[x] == data[y])
-                    count++;
+                if(x!=y && data[x] == data[y] && data[y] != ' ')
+                  {  obj->count++;
+                  data[y]=' ';}
+                    
+            }
+            data[x]= ' ';
+            v.push_back(obj);
             }
         }
+
+            
+
     return 0;
 }
 
