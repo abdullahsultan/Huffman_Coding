@@ -17,7 +17,7 @@ public:
         }
         Huffman_Tree()
         {
-         
+         left=NULL; right=NULL;
         }
     
     };
@@ -26,14 +26,26 @@ public:
 
 
 
-int main(int argc, char **argv)
+int main()
 {
     string raw_data = "abdullah";
     
-    string data = "abdulh";
+    string my_data = "abdulh";
     int freq[] = {2,1,1,1,2,1};
-    Huffman_Tree base_array[sizeof(freq)];
-    cout<<sizeof(freq)/sizeof(freq[0]);
+    int size = sizeof(freq)/sizeof(freq[0]);
+    Huffman_Tree base_array[size];
+    Huffman_Tree *pointer_array[size];
+    for(int x=0 ; x < size ; x++)
+    {
+        base_array[x].c = my_data[x];
+        base_array[x].d = freq[x];
+        pointer_array[x] = &base_array[x];
+    }
+    
+
+    
+    
+
 
     return 0;
 }
