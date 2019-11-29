@@ -54,6 +54,15 @@ Huffman_Tree* tree_maker(Huffman_Tree base_array[], Huffman_Tree *pointer_array[
     }  
 }
 
+void traversal_Data_Extraction(Huffman_Tree *root)
+{
+   if(root->c!=' ')
+    {
+        
+    }
+ 
+}
+
 
 
 
@@ -74,7 +83,6 @@ int main()
         pointer_array[x] = &base_array[x];
     }
     
-    cout<<"Done 1";
     Huffman_Tree *root;
     root = tree_maker(base_array,pointer_array,size);
     cout<<"Done final";
