@@ -36,15 +36,15 @@ Huffman_Tree* tree_maker(Huffman_Tree base_array[], Huffman_Tree *pointer_array[
     {
         if(pointer_array[i] != NULL)
             if (pointer_array[i]->d < first)  
-            {  
+            { 
                 second = first;  second_index = first_index;
                 first = pointer_array[i]->d;  first_index = i;
             }
     }
     
-    temp = new Huffman_Tree(base_array[first_index].d + base_array[second_index].d,' ');
+    temp = new Huffman_Tree(pointer_array[first_index]->d + pointer_array[second_index]->d,' ');
     temp->left = & base_array[first_index]; temp->right = & base_array[second_index];
-    if(base_array[first_index].d + base_array[second_index].d == sum)
+    if(pointer_array[first_index]->d + pointer_array[second_index]->d == sum)
         {root = temp; return root;}
     
     pointer_array[first_index] = NULL ; pointer_array[second_index] = NULL ;
@@ -73,8 +73,11 @@ int main()
         base_array[x].d = freq[x];
         pointer_array[x] = &base_array[x];
     }
-
-    tree_maker(base_array,pointer_array,size);
+    
+    cout<<"Done 1";
+    Huffman_Tree *root;
+    root = tree_maker(base_array,pointer_array,size);
+    cout<<"Done final";
     
 
     return 0;
