@@ -17,10 +17,42 @@ public:
         }
         Huffman_Tree()
         {
-         left=NULL; right=NULL;
+         left=NULL; right=NULL; c=' ';
         }
     
     };
+    
+Huffman_Tree* tree_maker(Huffman_Tree base_array[], Huffman_Tree *pointer_array[], int size)
+{
+    int sum=0;
+    for(int x=0;x<size;x++)
+        sum = sum + base_array[x].d;
+    Huffman_Tree *root;
+    Huffman_Tree *temp;
+    int first,second,first_index,second_index;
+    while(true){
+    first = second = INT_MAX;  
+    for (int i = 0; i < size ; i ++)  
+    {
+        if(pointer_array[i] != NULL)
+            if (pointer_array[i]->d < first)  
+            {  
+                second = first;  second_index = first_index;
+                first = pointer_array[i]->d;  first_index = i;
+            }
+    }
+    
+    temp = new Huffman_Tree(base_array[first_index].d + base_array[second_index].d,' ');
+    temp->left = & base_array[first_index]; temp->right = & base_array[second_index];
+    if(base_array[first_index].d + base_array[second_index].d == sum)
+        {root = temp; return root;}
+    
+    pointer_array[first_index] = NULL ; pointer_array[second_index] = NULL ;
+    
+    pointer_array[first_index] = temp;
+    
+    }  
+}
 
 
 
@@ -41,11 +73,9 @@ int main()
         base_array[x].d = freq[x];
         pointer_array[x] = &base_array[x];
     }
-    
 
+    tree_maker(base_array,pointer_array,size);
     
-    
-
 
     return 0;
 }
