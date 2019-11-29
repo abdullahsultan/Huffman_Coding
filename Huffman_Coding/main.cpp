@@ -27,6 +27,7 @@ Huffman_Tree* tree_maker(Huffman_Tree base_array[], Huffman_Tree *pointer_array[
     int sum=0;
     for(int x=0;x<size;x++)
         sum = sum + base_array[x].d;
+        
     Huffman_Tree *root;
     Huffman_Tree *temp;
     int first,second,first_index,second_index;
@@ -43,7 +44,7 @@ Huffman_Tree* tree_maker(Huffman_Tree base_array[], Huffman_Tree *pointer_array[
     }
     
     temp = new Huffman_Tree(pointer_array[first_index]->d + pointer_array[second_index]->d,' ');
-    temp->left = & base_array[first_index]; temp->right = & base_array[second_index];
+    temp->left =  pointer_array[first_index]; temp->right =  pointer_array[second_index];
     if(pointer_array[first_index]->d + pointer_array[second_index]->d == sum)
         {root = temp; return root;}
     
@@ -54,11 +55,17 @@ Huffman_Tree* tree_maker(Huffman_Tree base_array[], Huffman_Tree *pointer_array[
     }  
 }
 
-void traversal_Data_Extraction(Huffman_Tree *root)
+void traversal_Data_Extraction(Huffman_Tree *root,string vals)
 {
-   if(root->c!=' ')
+   if(root != NULL)
     {
-        
+        if(root->c != ' ')
+            cout<<vals<<"   "<< root->c  <<endl;
+        vals.append("0");
+        traversal_Data_Extraction(root->left,vals);
+        vals.append("1");
+        traversal_Data_Extraction(root->right,vals);
+
     }
  
 }
@@ -85,6 +92,7 @@ int main()
     
     Huffman_Tree *root;
     root = tree_maker(base_array,pointer_array,size);
+    traversal_Data_Extraction(root,"");
     cout<<"Done final";
     
 
